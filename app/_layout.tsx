@@ -4,7 +4,7 @@ import { Stack, useRouter } from "expo-router";
 import * as SplashScreen from "expo-splash-screen";
 import { useEffect } from "react";
 import { TouchableOpacity } from "react-native";
-
+import { GestureHandlerRootView } from "react-native-gesture-handler";
 export { ErrorBoundary } from "expo-router";
 
 export const unstable_settings = {
@@ -39,7 +39,11 @@ export default function RootLayout() {
     return null;
   }
 
-  return <RootLayoutNav />;
+  return (
+    // <GestureHandlerRootView>
+      <RootLayoutNav />
+    // </GestureHandlerRootView>
+  );
 }
 
 function RootLayoutNav() {
@@ -67,7 +71,7 @@ function RootLayoutNav() {
         name="(modals)/booking"
         options={{
           presentation: "transparentModal",
-          animation:"fade",
+          animation: "fade",
           headerLeft: () => (
             <TouchableOpacity onPress={() => router.back()}>
               <Ionicons name="close-outline" size={24} />
