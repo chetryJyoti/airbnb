@@ -4,6 +4,7 @@ import { Link, Stack } from "expo-router";
 import ExploreHeader from "@/components/ExploreHeader";
 import Listings from "@/components/Listings";
 import listingData from "@/assets/dummyData/airbnb-listings.json";
+import PriceCard from "@/components/PriceCard";
 
 const Explore = () => {
   const [category, setCategory] = useState("Apartments");

@@ -6,14 +6,13 @@ import {
   ScrollView,
 } from "react-native";
 
-// import { ScrollView } from 'react-native-gesture-handler';
-
-import React, { useMemo, useRef, useState } from "react";
+import React, { useRef, useState } from "react";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { Link } from "expo-router";
 import { Ionicons, MaterialIcons } from "@expo/vector-icons";
 import Colors from "@/constants/Colors";
 import * as Haptics from "expo-haptics";
+import PriceCard from "./PriceCard";
 
 const categories = [
   {
@@ -51,7 +50,6 @@ const ExploreHeader = ({ onCategoryChanged }: Props) => {
 
   const [activeIndex, setactiveIndex] = useState(0);
 
-
   const selectedCategory = (index: number) => {
     const selected = itemRef.current[index];
 
@@ -62,7 +60,6 @@ const ExploreHeader = ({ onCategoryChanged }: Props) => {
     setactiveIndex(index);
 
     Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
-    //pass to other component
     onCategoryChanged(categories[index].name);
   };
 
@@ -85,46 +82,45 @@ const ExploreHeader = ({ onCategoryChanged }: Props) => {
             <Ionicons name="options-outline" size={20} />
           </TouchableOpacity>
         </View>
-        <>
-          <ScrollView
-            ref={scrollRef}
-            horizontal
-            showsHorizontalScrollIndicator={false}
-            contentContainerStyle={{
-              alignItems: "center",
-              gap: 20,
-              paddingHorizontal: 20,
-            }}
-          >
-            {categories.map((item, index) => (
-              <TouchableOpacity
-                key={index}
-                ref={(el) => (itemRef.current[index] = el)}
+
+        <ScrollView
+          ref={scrollRef}
+          horizontal
+          showsHorizontalScrollIndicator={false}
+          contentContainerStyle={{
+            alignItems: "center",
+            gap: 20,
+            paddingHorizontal: 20,
+          }}
+        >
+          {categories.map((item, index) => (
+            <TouchableOpacity
+              key={index}
+              ref={(el) => (itemRef.current[index] = el)}
+              style={
+                activeIndex === index
+                  ? styles.categoriesActiveBtn
+                  : styles.categoriesBtn
+              }
+              onPress={() => selectedCategory(index)}
+            >
+              <MaterialIcons
+                name={item.icon as any}
+                size={36}
+                color={activeIndex === index ? "#000" : Colors.grey}
+              />
+              <Text
                 style={
                   activeIndex === index
-                    ? styles.categoriesActiveBtn
-                    : styles.categoriesBtn
+                    ? styles.categoryTextActive
+                    : styles.categoryText
                 }
-                onPress={() => selectedCategory(index)}
               >
-                <MaterialIcons
-                  name={item.icon as any}
-                  size={36}
-                  color={activeIndex === index ? "#000" : Colors.grey}
-                />
-                <Text
-                  style={
-                    activeIndex === index
-                      ? styles.categoryTextActive
-                      : styles.categoryText
-                  }
-                >
-                  {item.name}
-                </Text>
-              </TouchableOpacity>
-            ))}
-          </ScrollView>
-        </>
+                {item.name}
+              </Text>
+            </TouchableOpacity>
+          ))}
+        </ScrollView>
       </View>
     </SafeAreaView>
   );
