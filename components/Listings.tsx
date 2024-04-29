@@ -5,10 +5,8 @@ import {
   ListRenderItem,
   TouchableOpacity,
   StyleSheet,
-  Image,
-  Dimensions,
-  Animated,
 } from "react-native";
+import Animated, { FadeInLeft, FadeInRight } from "react-native-reanimated";
 import React, { useEffect, useRef, useState } from "react";
 import { defaultStyles } from "@/constants/Styles";
 import { Link } from "expo-router";
@@ -45,14 +43,12 @@ const data = [
 const Listings = ({ listings, category }: Props) => {
   const [loading, setLoading] = useState(false);
   const listRef = useRef<FlatList>(null);
-  const translateY = useRef(new Animated.Value(0)).current;
-  const [scrollY, setScrollY] = useState(0);
-  console.log("scrollY:", scrollY);
 
   useEffect(() => {
-    // setTimeout(() => {
-    //   setLoading(false);
-    // }, 1000);
+    setLoading(true);
+    setTimeout(() => {
+      setLoading(false);
+    }, 400);
     console.log("reload listings: ", category);
     console.log("listings:", listings.length);
   }, [category]);
@@ -61,15 +57,14 @@ const Listings = ({ listings, category }: Props) => {
     console.log("Wishlisted:", id);
   };
 
-  const handleScroll = (event) => {
-    const { y } = event.nativeEvent.contentOffset;
-    setScrollY(y);
-  };
-
   const renderRow: ListRenderItem<Listing> = ({ item }) => (
     <Link href={`/listing/${item.id}`} asChild>
       <TouchableOpacity>
-        <View style={styles.listing}>
+        <View
+          style={styles.listing}
+          entering={FadeInRight}
+          exiting={FadeInLeft}
+        >
           <CarouselCardItem itemData={data} />
           <TouchableOpacity
             style={{ position: "absolute", right: 30, top: 28 }}
@@ -120,7 +115,6 @@ const Listings = ({ listings, category }: Props) => {
         renderItem={renderRow}
         ref={listRef}
         data={loading ? [] : listings}
-        onScroll={handleScroll}
         scrollEventThrottle={16}
       />
     </View>
