@@ -6,7 +6,6 @@ import {
   TouchableOpacity,
   StyleSheet,
 } from "react-native";
-import Animated, { FadeInLeft, FadeInRight } from "react-native-reanimated";
 import React, { useEffect, useRef, useState } from "react";
 import { defaultStyles } from "@/constants/Styles";
 import { Link } from "expo-router";
@@ -60,11 +59,7 @@ const Listings = ({ listings, category }: Props) => {
   const renderRow: ListRenderItem<Listing> = ({ item }) => (
     <Link href={`/listing/${item.id}`} asChild>
       <TouchableOpacity>
-        <View
-          style={styles.listing}
-          entering={FadeInRight}
-          exiting={FadeInLeft}
-        >
+        <View style={styles.listing}>
           <CarouselCardItem itemData={data} />
           <TouchableOpacity
             style={{ position: "absolute", right: 30, top: 28 }}
