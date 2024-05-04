@@ -8,7 +8,12 @@ import {
   Share,
 } from "react-native";
 import React, { useLayoutEffect } from "react";
-import { useLocalSearchParams, useNavigation } from "expo-router";
+import {
+  Link,
+  useLocalSearchParams,
+  useNavigation,
+  useRouter,
+} from "expo-router";
 import listingsData from "@/assets/dummyData/airbnb-listings.json";
 import { Listing } from "@/interfaces/listing";
 import Animated, {
@@ -26,6 +31,8 @@ const IMG_HEIGHT = 300;
 
 const { width } = Dimensions.get("window");
 
+
+
 const Details = () => {
   const { id } = useLocalSearchParams<{ id: string }>();
   const listing: Listing = (listingsData as any[]).find(
@@ -33,8 +40,6 @@ const Details = () => {
   );
 
   console.log("id", id);
-
-  console.log("listing", listing);
 
   //parallex effect
   const scrollRef = useAnimatedRef<Animated.ScrollView>();
@@ -111,6 +116,16 @@ const Details = () => {
     };
   }, []);
 
+  //show all images
+  const router = useRouter();
+  const showAllImages = () => {
+    const imageId = 99923432;
+    router.push({
+      pathname: "/(modals)/images",
+      params: {imageId},
+    });
+  };
+
   return (
     <View style={styles.container}>
       <Animated.ScrollView
@@ -118,10 +133,16 @@ const Details = () => {
         contentContainerStyle={{ paddingBottom: 100 }}
         scrollEventThrottle={16}
       >
-        <Animated.Image
-          source={{ uri: listing.xl_picture_url }}
-          style={[styles.image, imageAnimated]}
-        />
+        <TouchableOpacity
+          onPress={() => {
+            showAllImages();
+          }}
+        >
+          <Animated.Image
+            source={{ uri: listing.xl_picture_url }}
+            style={[styles.image, imageAnimated]}
+          />
+        </TouchableOpacity>
 
         <View style={styles.infoContainer}>
           <Text style={styles.name}>{listing.name}</Text>

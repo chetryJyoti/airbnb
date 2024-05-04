@@ -120,6 +120,7 @@ const styles = StyleSheet.create({
   listing: {
     padding: 18,
     gap: 4,
+    // marginTop: 18
   },
   image: {
     width: "100%",

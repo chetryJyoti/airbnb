@@ -39,7 +39,7 @@ const CarouselCardItem = ({ itemData }) => {
         inactiveSlideShift={0}
         useScrollView={true}
         onSnapToItem={(index) => setIndex(index)}
-        autoplay={true}
+        // autoplay={true}
         autoplayInterval={6000}
         loop
         hasParallaxImages={true}

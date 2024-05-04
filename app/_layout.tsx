@@ -82,6 +82,20 @@ function RootLayoutNav() {
           ),
         }}
       />
+
+      <Stack.Screen
+        name="(modals)/images"
+        options={{
+          headerTitle: "",
+          presentation: "card",
+          animation: "fade",
+          headerLeft: () => (
+            <TouchableOpacity onPress={() => router.back()}>
+              <Ionicons name="chevron-back" size={24} />
+            </TouchableOpacity>
+          ),
+        }}
+      />
     </Stack>
   );
 }
