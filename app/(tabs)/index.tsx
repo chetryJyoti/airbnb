@@ -5,7 +5,8 @@ import ExploreHeader from "@/components/ExploreHeader";
 import Listings from "@/components/Listings";
 import listingData from "@/assets/dummyData/airbnb-listings.json";
 import PriceCard from "@/components/PriceCard";
-
+import ListingsMap from "@/components/ListingsMap";
+import ListingsGeoData from "@/assets/dummyData/airbnb-listings.geo.json";
 const Explore = () => {
   const [category, setCategory] = useState("Apartments");
 
@@ -22,7 +23,8 @@ const Explore = () => {
           header: () => <ExploreHeader onCategoryChanged={onDataChanged} />,
         }}
       />
-      <Listings listings={listings} category={category} />
+      <ListingsMap listingGeoData={ListingsGeoData} />
+      {/*  <Listings listings={listings} category={category} /> */}
     </View>
   );
 };
