@@ -7,7 +7,7 @@ export const defaultStyles = StyleSheet.create({
     backgroundColor: "#FDFFFF",
   },
   inputField: {
-    height: 44,
+    height: 60,
     borderWidth: 1,
     borderColor: "#ABABAB",
     borderRadius: 8,
@@ -41,5 +41,11 @@ export const defaultStyles = StyleSheet.create({
     paddingHorizontal: 20,
     borderTopColor: Colors.grey,
     borderTopWidth: StyleSheet.hairlineWidth,
+  },
+  divider: {
+    height: StyleSheet.hairlineWidth,
+    backgroundColor: Colors.grey,
+    marginVertical: 16,
+    flexGrow: 1,
   },
 });
