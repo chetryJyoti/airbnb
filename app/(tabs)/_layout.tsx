@@ -1,11 +1,9 @@
 import React from "react";
 import { Link, Tabs } from "expo-router";
-import { Pressable } from "react-native";
 import Colors from "@/constants/Colors";
 import { Ionicons } from "@expo/vector-icons";
 import { FontAwesome5 } from "@expo/vector-icons";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
-import { EvilIcons } from "@expo/vector-icons";
 export default function TabLayout() {
   return (
     <Tabs
@@ -32,6 +30,7 @@ export default function TabLayout() {
           tabBarIcon: ({ color, size }) => {
             return <Ionicons name="heart-outline" color={color} size={size} />;
           },
+          headerShown: false,
         }}
       ></Tabs.Screen>
       <Tabs.Screen
