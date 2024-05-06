@@ -13,7 +13,7 @@ import { useRouter } from "expo-router";
 const Wishlists = () => {
   const router = useRouter();
   return (
-    <SafeAreaView style={{ flex: 1 }}>
+    <SafeAreaView style={{ flex: 1, paddingTop: 52 }}>
       <View style={[defaultStyles.container, { padding: 18 }]}>
         <Text style={styles.headerText}>Wishlists</Text>
         <Text

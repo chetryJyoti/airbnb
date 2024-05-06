@@ -7,12 +7,17 @@ import {
 } from "react-native";
 import React, { useState } from "react";
 import { defaultStyles } from "@/constants/Styles";
-import { useLocalSearchParams } from "expo-router";
+import { useLocalSearchParams, useRouter } from "expo-router";
 import OtpTextInput from "react-native-text-input-otp";
+import Animated, { SlideInDown } from "react-native-reanimated";
 const Otp = () => {
   const { number } = useLocalSearchParams();
 
   const [otp, setOtp] = useState("");
+  const router = useRouter();
+  const addUserInfo = () => {
+    router.push("/(modals)/userInfo");
+  };
 
   return (
     <View
@@ -63,6 +68,37 @@ const Otp = () => {
           </Text>
         </TouchableOpacity>
       </View>
+      <Animated.View
+        style={defaultStyles.footer}
+        entering={SlideInDown.delay(200)}
+      >
+        <View
+          style={{
+            flexDirection: "row",
+            justifyContent: "space-between",
+            alignItems: "center",
+          }}
+        >
+          <View
+            style={{
+              flexDirection: "row",
+              justifyContent: "center",
+              alignItems: "center",
+              gap: 4,
+            }}
+          >
+            <Text style={{ fontFamily: "mon-semi-bold", fontSize: 18 }}></Text>
+          </View>
+          <TouchableOpacity
+            style={[defaultStyles.btn, { paddingHorizontal: 20 }]}
+            onPress={() => {
+              addUserInfo();
+            }}
+          >
+            <Text style={defaultStyles.btnText}>Continue</Text>
+          </TouchableOpacity>
+        </View>
+      </Animated.View>
     </View>
   );
 };

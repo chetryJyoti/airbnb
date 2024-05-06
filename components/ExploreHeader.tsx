@@ -94,7 +94,7 @@ const ExploreHeader = ({ onCategoryChanged }: Props) => {
         showsHorizontalScrollIndicator={false}
         contentContainerStyle={{
           alignItems: "center",
-          gap: 20,
+          gap: 10,
           paddingHorizontal: 20,
           // flexGrow: windowHeight,
         }}
@@ -112,7 +112,7 @@ const ExploreHeader = ({ onCategoryChanged }: Props) => {
           >
             <MaterialIcons
               name={item.icon as any}
-              size={36}
+              size={24}
               color={activeIndex === index ? "#000" : Colors.grey}
             />
             <Text
@@ -134,10 +134,9 @@ const ExploreHeader = ({ onCategoryChanged }: Props) => {
 
 const styles = StyleSheet.create({
   container: {
-    paddingTop: 60,
+    paddingTop: 54,
     backgroundColor: "#fff",
-    height: 250,
-    
+    height: 180,
   },
   actionRow: {
     flexDirection: "row",
@@ -160,7 +159,7 @@ const styles = StyleSheet.create({
     gap: 10,
     borderWidth: StyleSheet.hairlineWidth,
     borderColor: "#c2c2c2",
-    padding: 18,
+    padding: 12,
     borderRadius: 34,
     backgroundColor: "#fff",
 

@@ -148,6 +148,23 @@ function RootLayoutNav() {
           ),
         }}
       />
+      <Stack.Screen
+        name="(modals)/userInfo"
+        options={{
+          headerTitle: "",
+          presentation: "card",
+          animation: "slide_from_right",
+          headerLeft: () => (
+            <TouchableOpacity onPress={() => router.back()}>
+              <Ionicons
+                name="arrow-back"
+                size={24}
+                style={{ marginRight: 18 }}
+              />
+            </TouchableOpacity>
+          ),
+        }}
+      />
     </Stack>
   );
 }
